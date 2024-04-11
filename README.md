@@ -12,3 +12,8 @@ MedImageViewer is a user-friendly GUI application designed for medical image pro
 
 ## Software Architecture
 MedImageViewer is developed in [Python](https://www.python.org/), utilizing [PyQt5](https://riverbankcomputing.com/software/pyqt/intro) for the GUI components and [OpenCV](https://opencv.org/) for image processing tasks. The application follows a modular architecture, making it easy to extend with additional functionalities.
+
+## Contact Information
+
+- Xiaohui Jiang (x.jiang@duke.edu)
+- Roxy Cheng (tong.cheng@duke.edu)
