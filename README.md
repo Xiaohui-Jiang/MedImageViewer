@@ -57,8 +57,14 @@ git clone https://github.com/Xiaohui-Jiang/MedImageViewer.git
 Below is an example of how to use both functionalities:
 
 ```python
+"""Example Usage."""
+
+from property_calculation import (
+    compute_similarity,
+    extract_image_features,
+    plot_heatmap,
+)
 from segmentationGUI import main as segmentation_main
-from property_calculation import extract_image_features, compute_similarity, plot_heatmap
 
 # Functionality 1: Segmentation GUI
 segmentation_main()
