@@ -1,53 +1,75 @@
 # MedImageViewer
 
-MedImageViewer is a user-friendly GUI application designed for medical image processing and analysis. It aims to provide researchers and clinicians with a comprehensive suite of tools for image augmentation, annotation, measurement, tiling, edge detection, and similarity analysis. Our goal is to facilitate the efficient analysis of medical images, enhancing both research and clinical decision-making.
+## Overview
 
-## Features
-- **Annotation**: Manually annotate regions of interest in medical images.
-- **Measure Annotations**: Calculate area, perimeter, and other metrics for annotated regions.
-- **Find Similar Areas**: Identify and mark areas within or across images that share similar characteristics.
+The MedImageViewer project comprises two essential components: `segmentationGUI.py` and `property_calculation.py`.
 
-## Installation and Usage
-### Prerequisites
-- Python 3.x
-- PyQt5
-- OpenCV
+### Functionality 1: Segmentation GUI (`segmentationGUI.py`)
+
+- **Description**: This script provides a graphical user interface (GUI) for image segmentation.
+- **Usage**:
+    1. Run the script.
+    2. A window will automatically appear, prompting image selection. You can use the provided `sample_image.png`.
+    3. Use the left mouse button to draw bounding boxes on the image.
+    4. Click "save" to store segments into the `slices_from_GUI` folder.
+
+### Functionality 2: Property Calculation (`property_calculation.py`)
+
+- **Description**: This script computes properties of segmented images.
+- **Usage**:
+    ```python
+    from property_calculation import extract_image_features, compute_similarity, plot_heatmap
+    
+    folder_path = "slices_from_GUI"
+    feature_dict = extract_image_features(folder_path)
+    similarity_matrix = compute_similarity(feature_dict)
+    plot_heatmap(similarity_matrix, list(feature_dict.keys()))
+    ```
+
+    1. Utilize the `extract_image_features` function to compute a feature vector for each image in the `slices` folder. Features include RGB mean, RGB variance, HSV mean, HSV variance, edge complexity, and homogeneity.
+    2. Normalize features using Z-score.
+    3. Employ the `compute_similarity` function to calculate pairwise feature vector similarity and generate a similarity matrix.
+    4. Visualize the similarity matrix as a heatmap using the `plot_heatmap` function, with image names as labels.
+
+## Dependencies
+
+Ensure the following dependencies are installed:
+
 - NumPy
+- OpenCV
+- Matplotlib
 
-### Installation
-1. Clone the repository: git clone https://github.com/your-repo/MedImageViewer.git
-2. Navigate to the project directory: cd MedImageViewer
-3. Install the required dependencies: pip install -r requirements.txt
+## Installation
 
-### Usage
-1. Run the application:
-python main.py
-2. Load a medical image using the "Load Image" button.
-3. Use the annotation tools to annotate regions of interest.
-4. Perform measurements on the annotated regions using the "Measure Annotations" feature.
-5. Identify similar areas within or across images using the "Find Similar Areas" feature.
+Clone the repository:
 
-Note: The operation of the application may differ between Windows and macOS systems:
+```bash
+git clone https://github.com/Xiaohui-Jiang/MedImageViewer.git
+```
 
-- On macOS, use two-finger drag on the trackpad to select regions.
-- On macOS touchscreens, zooming in and out of the test image may be challenging.
+## Usage
 
-### Software Architecture
-MedImageViewer is developed in Python, utilizing PyQt5 for the GUI components and OpenCV for image processing tasks. The application follows a modular architecture, making it easy to extend with additional functionalities.
+1. Navigate to the project directory.
+2. Follow the usage instructions provided above for each functionality.
 
-The main components of the application include:
+## Example
 
-- GUI: Handles the user interface and user interactions.
-- Image Processing: Performs image processing tasks such as annotation, measurement, and similarity analysis.
-- Data Management: Manages the storage and retrieval of image data and annotations.
+Below is an example of how to use both functionalities:
 
-## Contributing
-We welcome contributions from the community to enhance MedImageViewer. If you would like to contribute, please follow these guidelines:
+```python
+from segmentationGUI import main as segmentation_main
+from property_calculation import extract_image_features, compute_similarity, plot_heatmap
 
-1. Fork the repository and create a new branch for your feature or bug fix.
-2. Ensure your code adheres to the project's coding style and conventions.
-3. Write unit tests to validate your changes.
-4. Submit a pull request with a clear description of your changes and their purpose.
+# Functionality 1: Segmentation GUI
+segmentation_main()
+
+# Functionality 2: Property Calculation
+folder_path = "slices_from_GUI"
+feature_dict = extract_image_features(folder_path)
+similarity_matrix = compute_similarity(feature_dict)
+plot_heatmap(similarity_matrix, list(feature_dict.keys()))
+```
+
 
 ## Contact Information
 

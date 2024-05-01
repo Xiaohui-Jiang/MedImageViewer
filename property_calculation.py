@@ -116,7 +116,7 @@ def plot_heatmap(similarity_matrix: np.ndarray, filenames: List[str]) -> None:
     similarity_matrix (ndarray): Matrix containing cosine similarity values.
     filenames (list): List of image filenames.
     """
-    sns.set()
+    sns.set_theme()
     plt.figure(figsize=(10, 8))
     sns.heatmap(
         similarity_matrix,
@@ -130,10 +130,11 @@ def plot_heatmap(similarity_matrix: np.ndarray, filenames: List[str]) -> None:
     plt.ylabel("Images")
     plt.xticks(rotation=45, ha="right")
     plt.yticks(rotation=0)
-    plt.show()
+    plt.savefig("similarity_heatmap.png")
 
 
-folder_path = "slices_from_GUI"
-feature_dict = extract_image_features(folder_path)
-similarity_matrix = compute_similarity(feature_dict)
-plot_heatmap(similarity_matrix, list(feature_dict.keys()))
+if __name__ == "__main__":
+    folder_path = "slices_from_GUI"
+    feature_dict = extract_image_features(folder_path)
+    similarity_matrix = compute_similarity(feature_dict)
+    plot_heatmap(similarity_matrix, list(feature_dict.keys()))
