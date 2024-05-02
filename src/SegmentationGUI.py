@@ -2,7 +2,7 @@
 
 import os
 import sys
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from PyQt5.QtCore import QPoint, QRect, Qt
 from PyQt5.QtGui import (
@@ -26,7 +26,7 @@ from PyQt5.QtWidgets import (
 class DrawableLabel(QLabel):
     """A QLabel that allows users to draw and label rectangles on an image."""
 
-    def __init__(self, parent: QWidget) -> None:
+    def __init__(self, parent: Optional[QWidget] = None) -> None:
         """Initialize the DrawableLabel with default attributes."""
         super().__init__(parent)
         self.start_point: QPoint = QPoint()
@@ -90,9 +90,10 @@ class DrawableLabel(QLabel):
 class MainWindow(QMainWindow):
     """Main window that contains all UI components including DrawableLabel."""
 
-    def __init__(self) -> None:
+    def __init__(self, test_mode: bool = False) -> None:
         """Set up the main window and initialize the UI."""
         super().__init__()
+        self.test_mode = test_mode
         self.initUI()
 
     def initUI(self) -> None:
@@ -111,18 +112,27 @@ class MainWindow(QMainWindow):
 
     def load_image(self) -> None:
         """Load an image file through a dialog and display it."""
-        file_name, _ = QFileDialog.getOpenFileName(
-            self, "Open Image", "", "Image files (*.jpg *.png)"
-        )
-        if file_name:
-            self.image = QPixmap(file_name)
-            self.image_label.setPixmap(self.image)
+        if not self.test_mode:
+            file_name, _ = QFileDialog.getOpenFileName(
+                self, "Open Image", "", "Image files (*.jpg *.png)"
+            )
+            if file_name:
+                self.image = QPixmap(file_name)
+                self.image_label.setPixmap(self.image)
+            else:
+                self.close()
         else:
-            self.close()
+            # Simulate an image load
+            self.image = QPixmap(800, 600)  # Specify the dimensions as needed
+            self.image.fill(
+                Qt.white  # type: ignore
+            )  # Fill the pixmap with white or any other placeholder
+            self.image_label.setPixmap(self.image)
 
     def save_images(self) -> None:
         """Save images of all bounding boxes."""
-        os.makedirs("slices_from_GUI", exist_ok=True)
+        directory = "tests/test_save" if self.test_mode else "slices_from_GUI"
+        os.makedirs(directory, exist_ok=True)
         if self.image:
             pixmap_size = self.image_label.pixmap().size()
             for idx, (rect, _) in enumerate(self.image_label.rectangles):
@@ -153,7 +163,7 @@ class MainWindow(QMainWindow):
                     ),
                 )
                 cropped = self.image.copy(rect_translated)
-                cropped.save(f"slices_from_GUI/bbox_{idx + 1}.png")
+                cropped.save(f"{directory}/bbox_{idx + 1}.png")
 
 
 if __name__ == "__main__":
