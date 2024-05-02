@@ -166,7 +166,8 @@ class MainWindow(QMainWindow):
                 cropped.save(f"{directory}/bbox_{idx + 1}.png")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Main."""
     app = QApplication(sys.argv)
     mainWin = MainWindow()
     mainWin.show()

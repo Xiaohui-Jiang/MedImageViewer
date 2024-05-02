@@ -6,10 +6,7 @@ import pytest
 from PyQt5.QtCore import QPoint, QRect, Qt
 from PyQt5.QtGui import QMouseEvent, QPixmap
 from PyQt5.QtWidgets import QApplication
-from SegmentationGUI import (
-    DrawableLabel,
-    MainWindow,
-)
+from SegmentationGUI import DrawableLabel, MainWindow
 
 
 @pytest.fixture
