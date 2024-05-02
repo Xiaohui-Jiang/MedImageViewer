@@ -28,7 +28,7 @@ def drawable_label(app: QApplication) -> DrawableLabel:
     label = DrawableLabel(None)
     label.resize(800, 600)
     pixmap = QPixmap(800, 600)
-    pixmap.fill(Qt.white)  # type: ignore
+    pixmap.fill(Qt.white)
     label.setPixmap(pixmap)
     return label
 
@@ -48,9 +48,9 @@ def test_drawing_rectangle(drawable_label: DrawableLabel) -> None:
         QMouseEvent(
             QMouseEvent.Type.MouseButtonPress,
             QPoint(100, 100),
-            Qt.LeftButton,  # type: ignore
-            Qt.LeftButton,  # type: ignore
-            Qt.NoModifier,  # type: ignore
+            Qt.LeftButton,
+            Qt.LeftButton,
+            Qt.NoModifier,
         )
     )
     # Simulate mouse move
@@ -58,9 +58,9 @@ def test_drawing_rectangle(drawable_label: DrawableLabel) -> None:
         QMouseEvent(
             QMouseEvent.Type.MouseMove,
             QPoint(200, 200),
-            Qt.LeftButton,  # type: ignore
-            Qt.LeftButton,  # type: ignore
-            Qt.NoModifier,  # type: ignore
+            Qt.LeftButton,
+            Qt.LeftButton,
+            Qt.NoModifier,
         )
     )
     # Simulate mouse release
@@ -68,9 +68,9 @@ def test_drawing_rectangle(drawable_label: DrawableLabel) -> None:
         QMouseEvent(
             QMouseEvent.Type.MouseButtonRelease,
             QPoint(200, 200),
-            Qt.LeftButton,  # type: ignore
-            Qt.LeftButton,  # type: ignore
-            Qt.NoModifier,  # type: ignore
+            Qt.LeftButton,
+            Qt.LeftButton,
+            Qt.NoModifier,
         )
     )
 
@@ -85,7 +85,7 @@ def test_save_images(main_window: MainWindow) -> None:
     # Set up the image and rectangles manually
     main_window.image = QPixmap(200, 200)  # Assuming a 200x200 px image
     main_window.image.fill(
-        Qt.white  # type: ignore
+        Qt.white
     )  # Fill the image with white for visibility
     main_window.image_label.rectangles = [
         (QRect(10, 10, 50, 50), "item1"),

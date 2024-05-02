@@ -57,7 +57,7 @@ def extract_image_features(folder_path: str) -> Dict[str, List[float]]:
 
             # Calculate homogeneity using grayscale image
             gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            ddepth = cv2.CV_64F  # type: ignore
+            ddepth = cv2.CV_64F
             homogeneity = cv2.Laplacian(gray_image, ddepth).var()
 
             feature_vector = np.concatenate(
