@@ -57,7 +57,9 @@ def extract_image_features(folder_path: str) -> Dict[str, List[float]]:
 
             # Calculate homogeneity using grayscale image
             gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            ddepth = cv2.CV_64F
+
+            ddepth = cv2.CV_64F  # type: ignore # noqa
+
             homogeneity = cv2.Laplacian(gray_image, ddepth).var()
 
             feature_vector = np.concatenate(
@@ -109,13 +111,10 @@ def compute_similarity(feature_dict: Dict[str, List[float]]) -> Any:
     return similarity_matrix
 
 
-def plot_heatmap(similarity_matrix: np.ndarray, filenames: List[str]) -> None:
-    """Plot heatmap of cosine similarity.
-
-    Args:
-    similarity_matrix (ndarray): Matrix containing cosine similarity values.
-    filenames (list): List of image filenames.
-    """
+def plot_heatmap(
+    similarity_matrix: np.ndarray, filenames: List[str], outfolder: str = ""
+) -> None:
+    """Plot heatmap of cosine similarity."""
     sns.set_theme()
     plt.figure(figsize=(10, 8))
     sns.heatmap(
@@ -130,7 +129,7 @@ def plot_heatmap(similarity_matrix: np.ndarray, filenames: List[str]) -> None:
     plt.ylabel("Images")
     plt.xticks(rotation=45, ha="right")
     plt.yticks(rotation=0)
-    plt.savefig("similarity_heatmap.png")
+    plt.savefig(os.path.join(outfolder, "similarity_heatmap.png"))
 
 
 if __name__ == "__main__":
