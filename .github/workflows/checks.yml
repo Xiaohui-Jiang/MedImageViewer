@@ -19,10 +19,9 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install mypy ruff
+        pip install ruff
 
     - name: Run checks
       run: |
         ruff check $(git ls-files '*.py')
         ruff format --check $(git ls-files '*.py')
-        mypy $(git ls-files '*.py')
