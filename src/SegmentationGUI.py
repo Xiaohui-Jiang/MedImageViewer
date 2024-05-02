@@ -37,6 +37,7 @@ class DrawableLabel(QLabel):
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         """Start drawing a rectangle on mouse press."""
+
         if event.button() == Qt.LeftButton:  # type: ignore # noqa
             self.drawing = True
             self.start_point = event.pos()
@@ -50,6 +51,7 @@ class DrawableLabel(QLabel):
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         """Finish drawing the rectangle on mouse release."""
+
         if event.button() == Qt.LeftButton and self.drawing:  # type: ignore # noqa
             self.drawing = False
             self.end_point = (
@@ -67,12 +69,14 @@ class DrawableLabel(QLabel):
         """Draw the rectangles and labels on the widget."""
         super().paintEvent(event)
         painter = QPainter(self)
+
         painter.setPen(QPen(Qt.red, 2, Qt.SolidLine))  # type: ignore # noqa
         painter.setFont(QFont("Arial", 10))
 
         # Draw existing rectangles
         for rect, name in self.rectangles:
             painter.drawRect(rect)
+
             painter.drawText(rect, Qt.AlignCenter, name)  # type: ignore # noqa
 
         # Draw current rectangle being drawn
@@ -84,6 +88,7 @@ class DrawableLabel(QLabel):
             painter.drawRect(self.current_rectangle[0])
             painter.drawText(
                 self.current_rectangle[0],
+
                 Qt.AlignCenter,  # type: ignore # noqa
                 self.current_rectangle[1],
             )
@@ -127,6 +132,7 @@ class MainWindow(QMainWindow):
             # Simulate an image load
             self.image = QPixmap(800, 600)  # Specify the dimensions as needed
             self.image.fill(
+
                 Qt.white  # type: ignore # noqa
             )  # Fill the pixmap with white or any other placeholder
             self.image_label.setPixmap(self.image)
