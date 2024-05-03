@@ -135,3 +135,4 @@ if __name__ == "__main__":
     feature_dict = extract_image_features(folder_path)
     similarity_matrix = compute_similarity(feature_dict)
     plot_heatmap(similarity_matrix, list(feature_dict.keys()))
+    print("Heatmap saved!")

@@ -83,9 +83,7 @@ def test_save_images(main_window: MainWindow) -> None:
     """Test saving images of bounding boxes to a test-specific directory."""
     # Set up the image and rectangles manually
     main_window.image = QPixmap(200, 200)  # Assuming a 200x200 px image
-    main_window.image.fill(
-        Qt.white  # type: ignore # noqa
-    )  # Fill the image with white for visibility
+    main_window.image.fill(Qt.white)  # type: ignore # noqa
     main_window.image_label.rectangles = [
         (QRect(10, 10, 50, 50), "item1"),
         (QRect(60, 60, 100, 100), "item2"),
