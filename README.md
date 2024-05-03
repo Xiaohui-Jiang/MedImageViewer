@@ -97,6 +97,12 @@ The MedImageViewer project includes a comprehensive suite of tests to ensure bot
     3. **Similarity Calculation**: Verifies that the similarity matrix is accurately computed based on the feature vectors.
     4. **Heatmap Generation**: Tests the ability to generate and save a heatmap visualization of the similarity matrix, ensuring it correctly labels and represents the data.
 
+Run:
+
+```terminal
+pytest.py
+```
+
 These tests cover the core functionalities of the MedImageViewer project, ensuring that each component not only works in isolation but also integrates smoothly in practical scenarios.
 
 ## Other notes
