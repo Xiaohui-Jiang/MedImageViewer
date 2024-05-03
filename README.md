@@ -100,10 +100,10 @@ The MedImageViewer project includes a comprehensive suite of tests to ensure bot
 Run:
 
 ```terminal
-pytest.py
+pytest
 ```
 
-These tests cover the core functionalities of the MedImageViewer project, ensuring that each component not only works in isolation but also integrates smoothly in practical scenarios.
+In terminal. These tests cover the core functionalities of the MedImageViewer project, ensuring that each component not only works in isolation but also integrates smoothly in practical scenarios.
 
 ## Other notes
 
