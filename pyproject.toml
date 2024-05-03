@@ -1,4 +1,4 @@
-[tool.mypy]
+[mypy]
 mypy_path = "src"
 explicit_package_bases = true
 ignore_missing_imports = true
