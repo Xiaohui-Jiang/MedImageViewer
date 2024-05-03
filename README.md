@@ -27,18 +27,18 @@ The MedImageViewer project comprises two essential components: `segmentationGUI.
     plot_heatmap(similarity_matrix, list(feature_dict.keys()))
     ```
 
-    1. Utilize the `extract_image_features` function to compute a feature vector for each image in the `slices` folder. Features include RGB mean, RGB variance, HSV mean, HSV variance, edge complexity, and homogeneity.
-    2. Normalize features using Z-score.
-    3. Employ the `compute_similarity` function to calculate pairwise feature vector similarity and generate a similarity matrix.
-    4. Save the similarity matrix as a heatmap using the `plot_heatmap` function. A sample image is similarity_heatmap.png in this repository.
+    1. Utilize the `extract_image_features` function to compute a feature vector for each image in the `slices` folder. Features include RGB mean, RGB variance, HSV mean, HSV variance, edge complexity, and homogeneity. Normalize features using Z-score.
+    2. Employ the `compute_similarity` function to calculate pairwise feature vector similarity and generate a similarity matrix.
+    3. Save the similarity matrix as a heatmap using the `plot_heatmap` function. A sample image is similarity_heatmap.png in this repository.
 
 ## Dependencies
 
 Ensure the following dependencies are installed:
 
-- NumPy
-- OpenCV
-- Matplotlib
+- numPy
+- openCV-python
+- matplotlib
+- seaborn
 
 ## Installation
 
@@ -101,7 +101,7 @@ These tests cover the core functionalities of the MedImageViewer project, ensuri
 
 ## Other notes
 
-We try our best to meet the requirements of mypy for our project, but we found that some features in PyQt5, which exist, are considered non-existent by mypy. After researching online, it appears that mypy does not correctly handle some features in PyQt5. For these cases, we used # type: ignore # noqa to prevent errors. Additionally, we encountered issues with importing MATPLOTLIB and seaborn, receiving messages like 'module is installed, but missing library stubs or py.typed marker', even though there are no problems with their installation and usage.
+We try our best to meet the requirements of mypy for our project, but we found that some features in PyQt5, which exist, are considered non-existent by mypy. After researching online, it appears that mypy does not correctly handle some features in PyQt5. For these cases, we used # type: ignore # noqa to prevent errors. Additionally, we encountered issues with importing matplotlib and seaborn, receiving messages like 'module is installed, but missing library stubs or py.typed marker', even though there are no problems with their installation and usage.
 
 The tests can pass smoothly locally, but for incorporating into github workflow, it seems that the GUI cannot be tested in the github workflow, so we delete the part of test in PR in workflow file.
 
